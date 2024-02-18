@@ -2,37 +2,87 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <script src="js/jquery-2.1.3.min.js"></script>
-    <link rel="stylesheet" href="css/sample.css">
-    <title>じゃんけん</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <script src="js/jquery-2.1.3.min.js"></script>
+  <link rel="stylesheet" href="css/sample.css">
+  <title>じゃんけん</title>
 </head>
 
 <body>
 
-    <header>
-        <h1>じゃんけん</h1>
-    </header>
+  <header>
+    <h1>じゃんけん</h1>
+  </header>
 
-    <main>
-        <ul>
-            <li id="gu_btn">グー</li>
-            <li id="cho_btn">チョキ</li>
-            <li id="par_btn">パー</li>
-        </ul>
-        <div>コンピュータの出した手は？「<span id="pc_hands">なに？</span>」</div>
-        <div id="judgment">勝ち</div>
-    </main>
+  <main>
+    <ul>
+      <li id="gu_btn">グー</li>
+      <li id="cho_btn">チョキ</li>
+      <li id="par_btn">パー</li>
+    </ul>
+    <div>コンピュータの出した手は？「<span id="pc_hands">なに？</span>」</div>
+    <div id="judgment">勝ち</div>
+  </main>
 
-    <footer></footer>
-    <script>
-   
-   
+  <footer></footer>
+  <script>
 
+    // チョキボタンクリックしたら以下の処理を行う．
+    $('#cho_btn').on('click', function () {
+      // ユーザが出した手（チョキ）を変数Aにいれる．
+      const userHand = 'チョキ';
+      // 012のどれかをランダムで作って変数Bにいれる．（0→グー，1→チョキ，2→パー）
+      const computerHand = Math.floor(Math.random() * 3);
+      console.log(computerHand);
+      // 変数Aと変数Bを比較して，勝敗を判定する．（条件分岐）
+      if (computerHand === 0) {
+        // 画面にコンピュータの手を表示する．
+        $('#pc_hands').text('グー')
+        // 画面に勝敗を表示する．
+        $('#judgment').text('負け')
+      } else if (computerHand === 1) {
+        // 画面にコンピュータの手を表示する．
+        $('#pc_hands').text('チョキ')
+        // 画面に勝敗を表示する．
+        $('#judgment').text('あいこ')
+      } else if (computerHand === 2) {
+        // 画面にコンピュータの手を表示する．
+        $('#pc_hands').text('パー')
+        // 画面に勝敗を表示する．
+        $('#judgment').text('勝ち')
+      }
+    });
 
-   
-    </script>
+    // グーボタンクリックしたら以下の処理を行う．
+    $('#gu_btn').on('click', function () {
+      // ユーザが出した手（グー）を変数Aにいれる．
+      const userHand = 'グー';
+      // 012のどれかをランダムで作って変数Bにいれる．（0→グー，1→チョキ，2→パー）（0-90 → グー，91-98 → チョキ，99 → パー）
+      const computerHand = Math.floor(Math.random() * 100);
+      console.log(computerHan);
+      // 変数Aと変数Bを比較して，勝敗を判定する．（条件分岐）
+      if (0 <= computerHand && computerHand <= 90) {
+        // 画面にコンピュータの手を表示する．
+        $('#pc_hands').text('グー')
+        // 画面に勝敗を表示する．
+        $('#judgment').text('あいこ')
+      } else if (91 <= computerHand && computerHand <= 98) {
+        // 画面にコンピュータの手を表示する．
+        $('#pc_hands').text('チョキ')
+        // 画面に勝敗を表示する．
+        $('#judgment').text('勝ち')
+      } else if (computerHand === 99) {
+        // 画面にコンピュータの手を表示する．
+        $('#pc_hands').text('パー')
+        // 画面に勝敗を表示する．
+        $('#judgment').text('負け')
+      } else {
+        console.log('error');
+      }
+    });
+
+  </script>
 </body>
 
 </html>
