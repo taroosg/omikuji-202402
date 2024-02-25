@@ -23,10 +23,58 @@
     </ul>
     <div>コンピュータの出した手は？「<span id="pc_hands">なに？</span>」</div>
     <div id="judgment">勝ち</div>
+    <div>勝率：<span id="result"></span></div>
   </main>
 
   <footer></footer>
   <script>
+
+    // じゃんけんの回数をカウントする変数を用意する．
+    let jankenCount = 0;
+    // じゃんけんに勝った回数をカウントする変数を用意する．
+    let playerWinCount = 0;
+
+    $('#par_btn').on('click', function () {
+      const userHand = 'パー';
+      const computerHand = Math.floor(Math.random() * 3);
+      console.log(computerHand);
+      // じゃんけんの回数をカウントする変数に1を足す．
+      jankenCount++;
+      if (computerHand === 0) {
+        // 勝ちだったら，じゃんけんに勝った回数をカウントする変数に1を足す．
+        playerWinCount++;
+        $('#pc_hands').text('グー');
+        $('#judgment').text('勝ち');
+      } else if (computerHand === 1) {
+        $('#pc_hands').text('チョキ');
+        $('#judgment').text('負け');
+      } else if (computerHand === 2) {
+        $('#pc_hands').text('パー');
+        $('#judgment').text('あいこ');
+      }
+      // 画面にじゃんけんの回数を表示する．
+      // 画面にじゃんけんに勝った回数を表示する．
+      const winRate = (playerWinCount / jankenCount) * 100;
+      $('#result').text(winRate);
+    });
+
+    // document.getElementById('par_btn').addEventListener('click', function () {
+    //   const userHand = 'パー';
+    //   const computerHand = Math.floor(Math.random() * 3);
+    //   console.log(computerHand);
+    //   if (computerHand === 0) {
+    //     document.getElementById('pc_hands').textContent = 'グー';
+    //     document.getElementById('judgment').textContent = '勝ち';
+    //   } else if (computerHand === 1) {
+    //     document.getElementById('pc_hands').textContent = 'チョキ';
+    //     document.getElementById('judgment').textContent = '負け';
+    //   } else if (computerHand === 2) {
+    //     document.getElementById('pc_hands').textContent = 'パー';
+    //     document.getElementById('judgment').textContent = 'あいこ';
+    //   }
+    // });
+
+
 
     // チョキボタンクリックしたら以下の処理を行う．
     $('#cho_btn').on('click', function () {
@@ -60,7 +108,7 @@
       const userHand = 'グー';
       // 012のどれかをランダムで作って変数Bにいれる．（0→グー，1→チョキ，2→パー）（0-90 → グー，91-98 → チョキ，99 → パー）
       const computerHand = Math.floor(Math.random() * 100);
-      console.log(computerHan);
+      console.log(computerHand);
       // 変数Aと変数Bを比較して，勝敗を判定する．（条件分岐）
       if (0 <= computerHand && computerHand <= 90) {
         // 画面にコンピュータの手を表示する．
